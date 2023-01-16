@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id(Plugins.JETBRAINS_COMPOSE) version Version.jetbrainsCompose
 }
 
 kotlin {
@@ -17,13 +18,34 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                with(compose) {
+                    implementation(ui)
+                    implementation(animation)
+                    implementation(animationGraphics)
+                    implementation(foundation)
+                    implementation(material)
+                    implementation(runtime)
+                }
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                with(JetpackCompose) {
+                    api(activity)
+                    implementation(runtime)
+                    implementation(ui)
+                    implementation(foundationLayout)
+                    implementation(material)
+                }
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -47,10 +69,15 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.tscholze.mpcsample"
-    compileSdk = 32
+    namespace = Configuration.Android.id
+    compileSdk = Configuration.Android.compile
     defaultConfig {
-        minSdk = 31
-        targetSdk = 32
+        minSdk = Configuration.Android.min
+        targetSdk = Configuration.Android.target
     }
+}
+
+dependencies {
+    implementation("androidx.compose.ui:ui-tooling-preview:1.3.2")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.3.2")
 }
