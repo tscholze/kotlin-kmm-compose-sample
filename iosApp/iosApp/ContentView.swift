@@ -1,16 +1,25 @@
 import SwiftUI
 import shared
 
-struct ContentView: View {
-	let greet = Greeting().greet()
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var myWindow: UIWindow?
 
-	var body: some View {
-		Text(greet)
-	}
-}
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        myWindow = UIWindow(frame: UIScreen.main.bounds)
+        let mainViewController = AppleRootViewControllerKt.MainViewController(window: myWindow!)
+        myWindow?.rootViewController = mainViewController
+        myWindow?.makeKeyAndVisible()
+        return true
+    }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+     func application(
+        _ application: UIApplication,
+        supportedInterfaceOrientationsFor supportedInterfaceOrientationsForWindow: UIWindow?
+     ) -> UIInterfaceOrientationMask {
+         return UIInterfaceOrientationMask.all
+    }
 }

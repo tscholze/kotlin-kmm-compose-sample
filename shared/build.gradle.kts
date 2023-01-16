@@ -4,6 +4,8 @@ plugins {
     id(Plugins.JETBRAINS_COMPOSE) version Version.jetbrainsCompose
 }
 
+version = Configuration.Kotlin.version
+
 kotlin {
     android()
     
@@ -14,6 +16,12 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+        }
+    }
+
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.all {
+            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
         }
     }
 
@@ -30,11 +38,7 @@ kotlin {
                 }
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+
         val androidMain by getting {
             dependencies {
                 with(JetpackCompose) {
@@ -45,25 +49,6 @@ kotlin {
                     implementation(material)
                 }
             }
-        }
-        val androidTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
         }
     }
 }

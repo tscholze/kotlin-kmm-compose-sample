@@ -1,3 +1,5 @@
+import org.gradle.api.JavaVersion
+
 object Configuration {
 
     // MARK: - Android -
@@ -15,6 +17,13 @@ object Configuration {
 
     object iOS {
         const val deploymentTarget = "16.0"
+    }
+
+    // MARK: - Kotlin -
+    object Kotlin {
+        const val version = "0.0.1"
+        const val jvmTarget = "11"
+        val javaVersion = JavaVersion.VERSION_11
     }
 }
 
