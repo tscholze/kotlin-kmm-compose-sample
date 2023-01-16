@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(Plugins.ANDROID_APP)
+    id(Plugins.KOTLIN_ANDROID)
 }
 
 android {
-    namespace = "io.github.tscholze.mpcsample.android"
+    namespace = location(Modules.ANDROID)
     compileSdk = Configuration.Android.compile
     defaultConfig {
         applicationId = location(Modules.ANDROID)
@@ -16,9 +16,15 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.0"
+    compileOptions {
+        sourceCompatibility = Configuration.Kotlin.javaVersion
+        targetCompatibility = Configuration.Kotlin.javaVersion
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Version.composeCompiler
+    }
+
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -33,10 +39,11 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.2.1")
-    implementation("androidx.compose.foundation:foundation:1.2.1")
-    implementation("androidx.compose.material:material:1.2.1")
-    implementation("androidx.activity:activity-compose:1.5.1")
+    with(JetpackCompose) {
+        api(activity)
+        implementation(runtime)
+        implementation(ui)
+        implementation(foundationLayout)
+        implementation(material)
+    }
 }

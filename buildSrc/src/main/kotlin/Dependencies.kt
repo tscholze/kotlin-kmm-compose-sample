@@ -1,4 +1,5 @@
 object Version {
+    const val composeCompiler = "1.3.2"
     const val activity = "1.6.1"
     const val coroutines = "1.6.4"
     const val kotlin = "1.7.20"
