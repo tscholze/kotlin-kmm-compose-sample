@@ -2,10 +2,8 @@ package io.github.tscholze.mpcsample
 
 import android.app.Application
 
-class ShoppeApplication : Application() {
+class MCPSampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        TODO()
     }
 }

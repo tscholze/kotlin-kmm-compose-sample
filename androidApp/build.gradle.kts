@@ -5,13 +5,13 @@ plugins {
 
 android {
     namespace = "io.github.tscholze.mpcsample.android"
-    compileSdk = 32
+    compileSdk = Configuration.Android.compile
     defaultConfig {
-        applicationId = "io.github.tscholze.mpcsample.android"
-        minSdk = 31
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = location(Modules.ANDROID)
+        minSdk = Configuration.Android.min
+        targetSdk = Configuration.Android.target
+        versionCode = Configuration.Android.versionCode
+        versionName = Configuration.Android.versionName
     }
     buildFeatures {
         compose = true
