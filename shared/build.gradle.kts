@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    kotlin(Plugins.KOTLIN_MULTIPLATFORM)
+    id(Plugins.ANDROID_LIBRARY)
     id(Plugins.JETBRAINS_COMPOSE) version Version.jetbrainsCompose
 }
 
@@ -10,7 +10,7 @@ kotlin {
     android()
     
     listOf(
-        iosX64(),
+       // iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {

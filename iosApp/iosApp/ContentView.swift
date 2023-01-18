@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         myWindow = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = AppleRootViewControllerKt.MainViewController(window: myWindow!)
+        let mainViewController = UIViewController() // AppleRootViewControllerKt.MainViewController(window: myWindow!)
         myWindow?.rootViewController = mainViewController
         myWindow?.makeKeyAndVisible()
         return true

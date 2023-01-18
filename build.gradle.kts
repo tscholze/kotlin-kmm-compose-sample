@@ -5,6 +5,19 @@ plugins {
     kotlin("android").version("1.7.20").apply(false)
     kotlin("multiplatform").version("1.7.20").apply(false)
 }
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+    dependencies {
+        classpath(Kotlin.gradle)
+        classpath(Kotlin.serialization)
+    }
+}
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
