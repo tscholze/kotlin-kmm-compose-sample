@@ -54,7 +54,6 @@ kotlin {
                     implementation(material)
                     implementation(runtime)
                 }
-                implementation("io.github.copper-leaf:ballast-core:2.3.0")
             }
         }
         val commonTest by getting {
