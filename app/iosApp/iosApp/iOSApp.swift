@@ -3,23 +3,15 @@ import shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var myWindow: UIWindow?
+    var window: UIWindow?
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        myWindow = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = shared.RootViewControllerKt.RootViewController()
-        myWindow?.rootViewController = mainViewController
-        myWindow?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = RootViewControllerKt.RootViewController()
+        window?.makeKeyAndVisible()
         return true
-    }
-
-     func application(
-        _ application: UIApplication,
-        supportedInterfaceOrientationsFor supportedInterfaceOrientationsForWindow: UIWindow?
-     ) -> UIInterfaceOrientationMask {
-         return UIInterfaceOrientationMask.all
     }
 }

@@ -26,7 +26,7 @@ internal fun RootContent(modifier: Modifier = Modifier) {
                     Text(
                         text = "Hello world",
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(32.dp)
                     )
                 }
             }
