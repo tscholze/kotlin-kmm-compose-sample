@@ -40,7 +40,7 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 Project setup and basic Jetpack Compose UI sharing between `:androidApp`, `:iosApp` and `:shared`
 
 **UI**
-![Version 0.0.1](docs/assets/v001-min.png "Version 0.0.1")
+![Version 0.0.1](https://github.com/tscholze/kotlin-kmm-compose-sample/blob/main/docs/v001-min.png?raw=true "Version 0.0.1")
 
 
 ## License
