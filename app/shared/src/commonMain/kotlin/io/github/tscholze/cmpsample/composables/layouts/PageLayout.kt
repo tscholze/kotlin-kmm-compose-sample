@@ -5,7 +5,7 @@ import io.github.tscholze.cmpsample.MyApplicationTheme
 import io.github.tscholze.cmpsample.composables.components.CMPScaffold
 
 @Composable
-fun PageLayout(content: @Composable () -> Unit) {
+internal fun PageLayout(content: @Composable () -> Unit) {
     MyApplicationTheme {
         CMPScaffold {
             content()

@@ -17,34 +17,6 @@ kotlin {
         }
     }
 
-    val args = listOf(
-        "-linker-option", "-framework", "-linker-option", "Metal",
-        "-linker-option", "-framework", "-linker-option", "CoreText",
-        "-linker-option", "-framework", "-linker-option", "CoreGraphics"
-    )
-    iosX64("uikitX64") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs = freeCompilerArgs + args
-            }
-        }
-    }
-    iosArm64("uikitArm64") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs = freeCompilerArgs + args
-                freeCompilerArgs = freeCompilerArgs + "-Xdisable-phases=VerifyBitcode"
-            }
-        }
-    }
-    jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -86,17 +58,6 @@ kotlin {
         }
         val uikitMain by creating {
             dependsOn(nativeMain)
-        }
-        val uikitX64Main by getting {
-            dependsOn(uikitMain)
-        }
-        val uikitArm64Main by getting {
-            dependsOn(uikitMain)
-        }
-        val desktopMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-            }
         }
     }
 }
