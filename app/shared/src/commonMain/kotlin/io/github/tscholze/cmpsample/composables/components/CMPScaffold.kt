@@ -1,7 +1,10 @@
 package io.github.tscholze.cmpsample.composables.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
@@ -18,20 +21,26 @@ internal val SafeArea = compositionLocalOf { safeAreaState }
 
 @Composable
 internal fun CMPScaffold(content: @Composable () -> Unit) {
-    Scaffold(
-        topBar = { CMPAppBar() },
-        bottomBar = { CMPBottomAppBar() },
-        modifier = Modifier.padding(
-            start = SafeArea.current.value.calculateStartPadding(LayoutDirection.Ltr),
-            top = SafeArea.current.value.calculateTopPadding(),
-            end = SafeArea.current.value.calculateEndPadding(LayoutDirection.Ltr),
-            bottom = SafeArea.current.value.calculateBottomPadding()
-        ),
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.primary) // Whatever colour you want
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
+        Scaffold(
+            topBar = { CMPAppBar() },
+            bottomBar = { CMPBottomAppBar() },
+            modifier = Modifier.padding(
+                start = SafeArea.current.value.calculateStartPadding(LayoutDirection.Ltr),
+                top = SafeArea.current.value.calculateTopPadding(),
+                end = SafeArea.current.value.calculateEndPadding(LayoutDirection.Ltr),
+                bottom = SafeArea.current.value.calculateBottomPadding()
+            ),
         ) {
-            content()
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                content()
+            }
         }
     }
 }
