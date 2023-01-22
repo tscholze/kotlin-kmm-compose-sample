@@ -37,10 +37,19 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 
 ### 0.0.1
 **Main feature**
+
 Project setup and basic Jetpack Compose UI sharing between `:androidApp`, `:iosApp` and `:shared`
 
 **UI**
+
 ![Version 0.0.1](https://github.com/tscholze/kotlin-kmm-compose-sample/blob/main/docs/v001-min.png?raw=true "Version 0.0.1")
+
+## Special thanks to
+- [David Herman](https://github.com/bitspittle) for helping me with all Kotlin
+- [Adrian Witaszak](https://github.com/charlee-dev) for helping me to get started with KMM and shared ui
+
+## Get in touch
+If you wanna talk about Kotlin, KMM, Shared Compose UI, Jetpack Compose pr Jetpack Compose for Web, I would highly recommend to join David's tiny but [awesome Discord server](https://discord.com/invite/5NZ2GKV5Cs) for his awesome CfW-enhancing web framework called [Kobweb](https://kobweb.varabyte.com). I never meet such brilliant folks that are not too "good" to help beginners.
 
 
 ## License
