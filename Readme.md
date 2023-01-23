@@ -35,6 +35,17 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 
 ## Version overview
 
+### 0.0.2
+**Main feature**
+
+- Added `ResourceReader` as `actual` and `expected` implementation
+- Added CSV parsing for German license plate names
+- Added more "complex" UI with keyboard events
+
+**UI**
+
+![Version 0.0.2](https://github.com/tscholze/kotlin-kmm-compose-sample/blob/main/docs/v002-min.png?raw=true "Version 0.0.2")
+
 ### 0.0.1
 **Main feature**
 
