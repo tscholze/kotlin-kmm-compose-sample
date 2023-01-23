@@ -1,37 +1,61 @@
 package io.github.tscholze.cmpsample
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
-import io.github.tscholze.cmpsample.models.LicensePlateLocation
+import io.github.tscholze.cmpsample.model.LicensePlateLocation
 import io.github.tscholze.cmpsample.utils.ResourceReader
 
 @Composable
 internal fun RootContent() {
-    PageLayout {
-        LazyColumn {
-            items(parseData()) { row ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    // ID like "A"
-                    Text(row.id, style = MaterialTheme.typography.h3)
+    val textState = remember { mutableStateOf("") }
+    val allValues = parseData()
 
-                    // City "Augsburg"
-                    // State "Bayern"
-                    Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize()) {
-                        Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-                        Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+    fun filterPlates(query: String): List<LicensePlateLocation> {
+        if(query.isEmpty()) {
+            return allValues
+        }
+
+        return allValues.filter { it.id.startsWith(query, ignoreCase = true) }
+    }
+
+    return PageLayout {
+        Column {
+            SearchView(textState)
+            // 2. List of license plate locations
+            LazyColumn {
+                items(filterPlates(textState.value)) { row ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        // ID like "A"
+                        Text(row.id, style = MaterialTheme.typography.h3)
+
+                        // City "Augsburg"
+                        // State "Bayern"
+                        Column(horizontalAlignment = Alignment.End, modifier = Modifier.fillMaxSize()) {
+                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
+                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+                        }
                     }
                 }
             }
         }
+
     }
 }
+
+
 
 private fun parseData(): List<LicensePlateLocation> {
     // 1. Prepare raw data from CSV file.

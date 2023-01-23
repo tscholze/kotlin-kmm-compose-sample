@@ -7,6 +7,6 @@ import androidx.compose.runtime.Composable
 @Composable
 internal fun CMPAppBar() {
     TopAppBar(
-        title = { Text(text = "AppBar") }
+        title = { Text(text = "Kennzeichner") }
     )
 }
