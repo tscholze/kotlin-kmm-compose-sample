@@ -69,4 +69,11 @@ android {
         minSdk = 31
         targetSdk = 33
     }
+
+    sourceSets["main"].resources.setSrcDirs(
+        listOf(
+            "src/androidMain/resources",
+            "src/commonMain/resources"
+        )
+    )
 }
