@@ -15,7 +15,12 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier as Modifier1
 
 /**
- * Based on: https://johncodeos.com/how-to-add-search-in-list-with-jetpack-compose/
+ * Generic text query search view.
+ *
+ * Based on:
+ * https://johncodeos.com/how-to-add-search-in-list-with-jetpack-compose/
+ *
+ * @param state Mutable state string that contains the typed query.
  */
 @Composable
 internal fun SearchView(state: MutableState<String>) {
