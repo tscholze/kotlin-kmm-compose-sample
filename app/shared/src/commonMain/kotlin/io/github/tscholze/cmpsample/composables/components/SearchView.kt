@@ -3,10 +3,7 @@ package io.github.tscholze.cmpsample.composables.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -24,7 +21,6 @@ import androidx.compose.ui.Modifier as Modifier1
 internal fun SearchView(state: MutableState<String>) {
 
     // MARK: - Components -
-
     @Composable
     fun LeadingIcon() {
         Icon(
@@ -54,6 +50,7 @@ internal fun SearchView(state: MutableState<String>) {
     TextField(
         modifier = Modifier1.fillMaxWidth(),
         textStyle = TextStyle(color = MaterialTheme.colors.onBackground, fontSize = 18.sp),
+        placeholder = { Text("Suche nach Kennzeichen") },
         singleLine = true,
         value = state.value,
         onValueChange = { state.value = it  },
