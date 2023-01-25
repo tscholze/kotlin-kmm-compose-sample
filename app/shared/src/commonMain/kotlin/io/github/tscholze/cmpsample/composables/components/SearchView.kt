@@ -22,6 +22,35 @@ import androidx.compose.ui.Modifier as Modifier1
  */
 @Composable
 internal fun SearchView(state: MutableState<String>) {
+
+    // MARK: - Components -
+
+    @Composable
+    fun LeadingIcon() {
+        Icon(
+            Icons.Default.Search,
+            contentDescription = "Search icon",
+            modifier = Modifier1.padding(15.dp).size(24.dp)
+        )
+    }
+
+    @Composable
+    fun TrailingIcon(state: MutableState<String>) {
+        if (state.value != "") {
+            IconButton(
+                onClick = { state.value = "" }
+            ) {
+                Icon(
+                    Icons.Default.Close,
+                    contentDescription = "Clear icon",
+                    modifier = Modifier1.padding(15.dp).size(24.dp)
+                )
+            }
+        }
+    }
+
+    // MARK: - UI -
+
     TextField(
         modifier = Modifier1.fillMaxWidth(),
         textStyle = TextStyle(color = MaterialTheme.colors.onBackground, fontSize = 18.sp),
@@ -31,28 +60,4 @@ internal fun SearchView(state: MutableState<String>) {
         leadingIcon = { LeadingIcon() },
         trailingIcon = { TrailingIcon(state) }
     )
-}
-
-@Composable
-internal fun LeadingIcon() {
-    Icon(
-        Icons.Default.Search,
-        contentDescription = "Search icon",
-        modifier = Modifier1.padding(15.dp).size(24.dp)
-    )
-}
-
-@Composable
-internal fun TrailingIcon(state: MutableState<String>) {
-    if (state.value != "") {
-        IconButton(
-            onClick = { state.value = "" }
-        ) {
-            Icon(
-                Icons.Default.Close,
-                contentDescription = "",
-                modifier = Modifier1.padding(15.dp).size(24.dp)
-            )
-        }
-    }
 }
