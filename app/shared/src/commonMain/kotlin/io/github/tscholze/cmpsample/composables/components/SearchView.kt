@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier as Modifier1
 internal fun SearchView(state: MutableState<String>) {
 
     // MARK: - Components -
+    
     @Composable
     fun LeadingIcon() {
         Icon(
