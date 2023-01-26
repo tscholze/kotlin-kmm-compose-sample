@@ -27,6 +27,7 @@ kotlin {
                     implementation(runtime)
 
                 }
+                implementation("io.github.copper-leaf:ballast-core:2.3.0")
                 implementation("io.github.copper-leaf:ballast-navigation:2.3.0")
             }
         }
