@@ -1,7 +1,9 @@
 package io.github.tscholze.cmpsample.composables.screens.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,11 +15,11 @@ internal fun LocalResourceDetainScreen(
     onGoBack: () -> Unit,
     itemId: String,
 ) {
-
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colors.background)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

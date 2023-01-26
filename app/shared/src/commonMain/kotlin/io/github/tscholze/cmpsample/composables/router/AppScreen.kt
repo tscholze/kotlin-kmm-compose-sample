@@ -9,7 +9,7 @@ enum class AppScreen(
     override val annotations: Set<RouteAnnotation> = emptySet(),
 ) : Route {
     LocalResourceList("/app/list"),
-    LocalResourceDetail("/app/list/{postId}"),
+    LocalResourceDetail("/app/list/{itemId}"),
     ;
 
     override val matcher: RouteMatcher = RouteMatcher.create(routeFormat)
