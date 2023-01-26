@@ -61,7 +61,7 @@ private fun parseData(): List<LicensePlateLocation> {
     // 1. Prepare raw data from CSV file.
     val rawData = ResourceReader()
         .readResource("data.csv")
-        .split("\r\n")
+        .lines()
         .drop(1)
         .map { it.split(",") }
 
