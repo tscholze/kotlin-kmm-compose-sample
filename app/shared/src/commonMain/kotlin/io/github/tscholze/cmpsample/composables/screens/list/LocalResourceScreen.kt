@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +20,11 @@ import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
 import io.github.tscholze.cmpsample.utils.ResourceReader
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun LocalResourceScreen() {
+internal fun LocalResourceScreen(
+    onGoToLocalResourceDetail: (id: String) -> Unit,
+) {
 
     // MARK: - Inner properties -
 
@@ -29,7 +34,9 @@ internal fun LocalResourceScreen() {
     // MARK: - Inner helper -
 
     fun filterPlates(query: String): List<LicensePlateLocation> {
-        if (query.isEmpty()) { return allValues }
+        if (query.isEmpty()) {
+            return allValues
+        }
 
         return allValues.filter {
             it.id.startsWith(query, ignoreCase = true)
@@ -47,18 +54,22 @@ internal fun LocalResourceScreen() {
             // 2. List of filtered license plate locations
             LazyColumn {
                 items(filterPlates(textState.value)) { row ->
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        // ID like "A"
-                        Text(row.id, style = MaterialTheme.typography.h3)
+                    Surface(
+                        onClick = { onGoToLocalResourceDetail(row.id) }
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            // ID like "A"
+                            Text(row.id, style = MaterialTheme.typography.h3)
 
-                        // City "Augsburg"
-                        // State "Bayern"
-                        Column(
-                            horizontalAlignment = Alignment.End,
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+                            // City "Augsburg"
+                            // State "Bayern"
+                            Column(
+                                horizontalAlignment = Alignment.End,
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
+                                Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+                            }
                         }
                     }
                 }
