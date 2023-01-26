@@ -1,4 +1,4 @@
-package io.github.tscholze.cmpsample.composables.screens
+package io.github.tscholze.cmpsample.composables.screens.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
