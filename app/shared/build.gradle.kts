@@ -20,6 +20,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // Ballast
+                implementation("io.github.copper-leaf:ballast-core:2.3.0")
+                implementation("io.github.copper-leaf:ballast-navigation:2.3.0")
+
+
+                // Compose
                 with(compose) {
                     implementation(ui)
                     implementation(foundation)

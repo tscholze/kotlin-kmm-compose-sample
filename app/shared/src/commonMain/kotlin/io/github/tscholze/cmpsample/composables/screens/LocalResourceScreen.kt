@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,13 +14,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.copperleaf.ballast.navigation.routing.RouterContract
+import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
+import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.ResourceReader
 
 @Composable
-internal fun LocalResourceScreen() {
+internal fun LocalResourceScreen(router: Router<AppScreens>) {
 
     // MARK: - Inner properties -
 
@@ -40,10 +44,11 @@ internal fun LocalResourceScreen() {
 
     // MARK: - UI -
 
-    return PageLayout {
+    return PageLayout("Local Resources", router) {
         Column {
             // 1. Search container
             SearchView(textState)
+
             // 2. List of filtered license plate locations
             LazyColumn {
                 items(filterPlates(textState.value)) { row ->

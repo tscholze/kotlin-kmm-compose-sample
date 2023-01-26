@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.copperleaf.ballast.navigation.routing.RouterContract
+import com.copperleaf.ballast.navigation.vm.Router
+import io.github.tscholze.cmpsample.navigation.AppScreens
 
 // MARK: - Internal properties -
 
@@ -25,14 +28,17 @@ internal val safeAreaState = mutableStateOf(PaddingValues())
  * App-themed scaffold with a top and bottom bar.
  */
 @Composable
-internal fun CMPScaffold(content: @Composable () -> Unit) {
+internal fun CMPScaffold(
+    title: String,
+    router: Router<AppScreens>,
+    content: @Composable () -> Unit) {
 
     // MARK: - Components -
 
     @Composable
     fun CMPAppBar() {
         TopAppBar(
-            title = { Text(text = "Kennzeichner") }
+            title = { Text(title) }
         )
     }
 
@@ -44,17 +50,21 @@ internal fun CMPScaffold(content: @Composable () -> Unit) {
                 icon = {
                     Icon(
                         Icons.Rounded.Home,
-                        contentDescription = "Home"
+                        contentDescription = "Local Data"
                     )
                 },
                 label = {
                     Text(
-                        text = "Home",
+                        text = "Local Data",
                         fontSize = 9.sp
                     )
                 },
                 selected = true,
-                onClick = {}
+                onClick = {
+                    router.trySend(
+                        RouterContract.Inputs.GoToDestination(AppScreens.LocalData.matcher.routeFormat)
+                    )
+                }
             )
 
             // About
@@ -62,17 +72,21 @@ internal fun CMPScaffold(content: @Composable () -> Unit) {
                 icon = {
                     Icon(
                         Icons.Rounded.Face,
-                        contentDescription = "About"
+                        contentDescription = "Remote Data"
                     )
                 },
                 label = {
                     Text(
-                        text = "About",
+                        text = "Remote Data",
                         fontSize = 9.sp
                     )
                 },
                 selected = false,
-                onClick = {}
+                onClick = {
+                    router.trySend(
+                        RouterContract.Inputs.GoToDestination(AppScreens.RemoteData.matcher.routeFormat)
+                    )
+                }
             )
         }
     }
