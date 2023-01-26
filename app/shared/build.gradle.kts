@@ -25,7 +25,9 @@ kotlin {
                     implementation(foundation)
                     implementation(material)
                     implementation(runtime)
+
                 }
+                implementation("io.github.copper-leaf:ballast-navigation:2.3.0")
             }
         }
         val commonTest by getting {
