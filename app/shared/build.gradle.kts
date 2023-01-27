@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization") version "1.6.21"
 }
 
 kotlin {
@@ -20,10 +21,19 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // Ktor
+                implementation("io.ktor:ktor-client-core:2.2.2")
+                implementation("io.ktor:ktor-client-cio:2.1.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                implementation("io.ktor:ktor-client-content-negotiation:2.2.2")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.2.2")
+
                 // Ballast
                 implementation("io.github.copper-leaf:ballast-core:2.3.0")
                 implementation("io.github.copper-leaf:ballast-navigation:2.3.0")
 
+                // Coil
+               // implementation("io.coil-kt:coil-compose:2.2.2")
 
                 // Compose
                 with(compose) {
@@ -39,7 +49,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-okhttp:2.2.2")
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -49,6 +63,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:2.2.2")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting

@@ -1,24 +1,105 @@
 package io.github.tscholze.cmpsample.composables.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Colors
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
+import io.github.tscholze.cmpsample.model.SnippetConfiguration
 import io.github.tscholze.cmpsample.navigation.AppScreens
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 
 @Composable
 internal fun RemoteResourceScreen(router: Router<AppScreens>) {
 
+    // MARK: - Properties -
+
+    val scope = rememberCoroutineScope()
+    var posts by remember { mutableStateOf(emptyList<SnippetConfiguration>()) }
+
+    val client = HttpClient(CIO) {
+        // Configure http client.
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+            })
+        }
+    }
+
+    // MARK: - Helper -
+
+    val uriHandler = LocalUriHandler.current
+
+    // MARK: - LaunchedEffect -
+
+    LaunchedEffect(true) {
+        // Fetch posts on launch
+        scope.launch {
+            posts = client
+                .get("https://tscholze.github.io/blog/posts.json")
+                .body<List<SnippetConfiguration>>()
+                .sortedBy { it.created }
+                .reversed()
+        }
+    }
+
     // MARK: - UI -
 
     return PageLayout("Remote Resources", router) {
-        Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.error)) {
-            Text("Remote", style = MaterialTheme.typography.h1)
+        // Create list of all items
+        LazyColumn {
+            itemsIndexed(posts) { index, post ->
+                Column {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp)
+                            .clickable {
+                             uriHandler.openUri(post.url)
+                            }
+                    ) {
+                        Text(post.title, fontWeight = FontWeight.Medium)
+                        Text(
+                            post.created,
+                            style = MaterialTheme.typography.caption,
+                            fontStyle = FontStyle.Italic
+                        )
+                    }
+
+                    // Show divider if current item is not the last one.
+                    if (index < posts.lastIndex) {
+                        Divider(
+                            color = MaterialTheme.colors.secondaryVariant,
+                            thickness = 0.5.dp
+                        )
+                    }
+                }
+            }
         }
     }
 }
