@@ -1,22 +1,22 @@
 package io.github.tscholze.cmpsample.composables.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
+import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.SnippetConfiguration
 import io.github.tscholze.cmpsample.navigation.AppScreens
@@ -43,6 +43,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
             json(Json {
                 prettyPrint = true
                 isLenient = true
+                ignoreUnknownKeys = true
             })
         }
     }
@@ -67,22 +68,9 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     // MARK: - UI -
 
     PageLayout("Remote Resources", router) {
-        // 1. Info block
-        Column {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
-                    .background(MaterialTheme.colors.secondary),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    "The following posts are fetch from an url",
-                    color = MaterialTheme.colors.onSecondary,
-                    modifier = Modifier.padding(horizontal = 8.dp)
-
-                    )
-            }
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            // 1. Info block
+            Banner("The following posts are fetch from an url")
 
             // 2. List of all items
             LazyColumn {

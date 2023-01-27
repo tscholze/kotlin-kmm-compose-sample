@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
  * the Json feed.
  *
  * @property title Title of the post
- * @property primaryTag Primary (first) tag of the post
  * @property created: Markdown created timestamp
  * @property url Url to the post
  * @property coverImageUrl Url to the cover image
@@ -15,7 +14,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 class SnippetConfiguration(
     val title: String,
-    val primaryTag: String,
     val created: String,
     val url: String,
     val coverImageUrl: String

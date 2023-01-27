@@ -1,6 +1,5 @@
 package io.github.tscholze.cmpsample.composables.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
+import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
@@ -44,29 +44,15 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
     // MARK: - UI -
 
     PageLayout("Local Resources", router) {
-        Column {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             // 1. Info block
-            Column {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(40.dp)
-                        .background(MaterialTheme.colors.secondary),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "The following posts are fetch from an embedded resource",
-                        color = MaterialTheme.colors.onSecondary,
-                        modifier = Modifier.padding(horizontal = 8.dp)
-
-                    )
-                }
+            Banner("The following data was fetched from a local file.")
 
                 // 2. Search container
                 SearchView(textState)
 
                 // 3. List of filtered license plate locations
-                LazyColumn {
+                LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     items(filterPlates(textState.value)) { row ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             // ID like "A"
@@ -82,7 +68,6 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
                                 Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
                             }
                         }
-                    }
                 }
             }
         }
