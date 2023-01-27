@@ -1,12 +1,9 @@
 package io.github.tscholze.cmpsample.composables.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.copperleaf.ballast.navigation.routing.RouterContract
+import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
@@ -33,7 +30,9 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
     // MARK: - Inner helper -
 
     fun filterPlates(query: String): List<LicensePlateLocation> {
-        if (query.isEmpty()) { return allValues }
+        if (query.isEmpty()) {
+            return allValues
+        }
 
         return allValues.filter {
             it.id.startsWith(query, ignoreCase = true)
@@ -44,26 +43,44 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
 
     // MARK: - UI -
 
-    return PageLayout("Local Resources", router) {
+    PageLayout("Local Resources", router) {
         Column {
-            // 1. Search container
-            SearchView(textState)
+            // 1. Info block
+            Column {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
+                        .background(MaterialTheme.colors.secondary),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "The following posts are fetch from an embedded resource",
+                        color = MaterialTheme.colors.onSecondary,
+                        modifier = Modifier.padding(horizontal = 8.dp)
 
-            // 2. List of filtered license plate locations
-            LazyColumn {
-                items(filterPlates(textState.value)) { row ->
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        // ID like "A"
-                        Text(row.id, style = MaterialTheme.typography.h3)
+                    )
+                }
 
-                        // City "Augsburg"
-                        // State "Bayern"
-                        Column(
-                            horizontalAlignment = Alignment.End,
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+                // 2. Search container
+                SearchView(textState)
+
+                // 3. List of filtered license plate locations
+                LazyColumn {
+                    items(filterPlates(textState.value)) { row ->
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            // ID like "A"
+                            Text(row.id, style = MaterialTheme.typography.h3)
+
+                            // City "Augsburg"
+                            // State "Bayern"
+                            Column(
+                                horizontalAlignment = Alignment.End,
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
+                                Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+                            }
                         }
                     }
                 }
