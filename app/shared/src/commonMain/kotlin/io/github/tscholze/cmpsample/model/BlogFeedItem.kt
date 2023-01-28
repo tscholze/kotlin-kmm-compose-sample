@@ -12,11 +12,11 @@ import kotlinx.serialization.Serializable
  * @property coverImageUrl Url to the cover image
  */
 @Serializable
-class SnippetConfiguration(
+class BlogFeedItem(
     val title: String,
     val created: String,
     val url: String,
-    val coverImageUrl: String
+    private val coverImageUrl: String
 )
 
 

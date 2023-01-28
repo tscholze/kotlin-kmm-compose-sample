@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
-import io.github.tscholze.cmpsample.model.SnippetConfiguration
+import io.github.tscholze.cmpsample.model.BlogFeedItem
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.HttpClientFactory
 import io.ktor.client.call.*
@@ -31,7 +31,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     // MARK: - Properties -
 
     val scope = rememberCoroutineScope()
-    var posts by remember { mutableStateOf(emptyList<SnippetConfiguration>()) }
+    var posts by remember { mutableStateOf(emptyList<BlogFeedItem>()) }
 
     val client = HttpClientFactory().makeClient()
 
@@ -46,7 +46,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
         scope.launch {
             posts = client
                 .get("https://tscholze.github.io/blog/posts.json")
-                .body<List<SnippetConfiguration>>()
+                .body<List<BlogFeedItem>>()
                 .sortedBy { it.created }
                 .reversed()
         }
