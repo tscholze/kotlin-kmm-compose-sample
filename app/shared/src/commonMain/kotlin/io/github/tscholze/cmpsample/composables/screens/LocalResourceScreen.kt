@@ -19,6 +19,13 @@ import io.github.tscholze.cmpsample.model.LicensePlateLocation
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.ResourceReader
 
+/**
+ * Sample screen to demonstrate the kmm approach of locally fetched resources.
+ * See file `data.csv` for more information.
+ *
+ * Caution:
+ * The file has to be embedded separately for iOS and Android.
+ */
 @Composable
 internal fun LocalResourceScreen(router: Router<AppScreens>) {
 

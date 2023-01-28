@@ -9,6 +9,17 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 |-------|------|
 |-|-|
 
+## Used dependencies
+
+Because of the complexity a non-dependency approach as iOS has is not possible.
+The following dependencies are required to run the app:
+
+1. [KotlinX coroutines](https://github.com/Kotlin/kotlinx.coroutines) as a foundation (X means extension)
+2. [Ktor](https://ktor.io) for Network requests and parsing
+3. [Ballast](https://copper-leaf.github.io/ballast/) for Jetpack Compose navigation
+
+
+
 ## Feature roadmap
 
 ### Setup
@@ -20,8 +31,15 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 - [x] Strip down `:iOSApp` app to use shared ui
 - [x] Get rid of `:iOSApp` build log flodding
 
+### Core functionality
+- [x] Add in-app navigation feature (screen transitations)
+- [x] Add fetch local data  (first screen, csv)
+- [x] Add fetch remote data (second screen, json)
+- [ ] Add user default persisted flags
+- [ ] Add monitoring with Firebase Analytics & Crashlytics
+
 ### UI
-- [ ] Create a fake but real world example of an app ui
+- [x] Create a fake but real world example of an app ui
 - [ ] Evaluate how the translation from Android JPC controls like `BottomBar` works in iOS
 - [ ] Evaluate how it would be possible to create "custom" ui for each platform but use it in `:shared:commonMain`
 
@@ -34,6 +52,17 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 - [ ] Check if there is no memory leakage
 
 ## Version overview
+
+### 0.0.3
+**Main feature**
+
+- Added Ktor to fetch and parse JSON data
+- Added `HttpClientFactory` as `actual` and `expected` implementation
+- Added "open in external app" sample
+
+**UI**
+
+![Version 0.0.3](https://github.com/tscholze/kotlin-kmm-compose-sample/blob/main/docs/v003-min.png?raw=true "Version 0.0.3")
 
 ### 0.0.2
 **Main feature**

@@ -25,15 +25,21 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
 
+/**
+ * Sample screen to demonstrate the kmm approach of remoted fetched resources.
+ * See url `"https://tscholze.github.io/blog/posts.json"` for more information.
+ *
+ * Caution:
+ * The http client has to be created for iOS and Android separately.
+ */
 @Composable
 internal fun RemoteResourceScreen(router: Router<AppScreens>) {
 
     // MARK: - Properties -
 
     val scope = rememberCoroutineScope()
-    var posts by remember { mutableStateOf(emptyList<BlogFeedItem>()) }
-
     val client = HttpClientFactory().makeClient()
+    var posts by remember { mutableStateOf(emptyList<BlogFeedItem>()) }
 
     // MARK: - Helper -
 
