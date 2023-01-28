@@ -1,7 +1,7 @@
 plugins {
-    kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.7.10"
 }
 
@@ -21,16 +21,25 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+
+                // Kotlinx
+                with(Dependencies.Kotlinx) {
+                    implementation(coroutines)
+                }
+
                 // Ktor
-                implementation("io.ktor:ktor-client-core:2.1.3")
-                implementation("io.ktor:ktor-client-cio:2.1.3")
-                implementation("io.ktor:ktor-client-content-negotiation:2.1.3")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                with(Dependencies.Ktor) {
+                    implementation(core)
+                    implementation(cio)
+                    implementation(contentNegotiation)
+                    implementation(json)
+                }
 
                 // Ballast
-                implementation("io.github.copper-leaf:ballast-core:2.3.0")
-                implementation("io.github.copper-leaf:ballast-navigation:2.3.0")
+                with(Dependencies.Ballast) {
+                    implementation(core)
+                    implementation(navigation)
+                }
 
                 // Compose
                 with(compose) {
@@ -52,6 +61,13 @@ kotlin {
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependencies {
+                // Ktor
+                with(Dependencies.Ktor) {
+                    implementation(darwin)
+                }
+            }
+
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -75,6 +91,8 @@ kotlin {
     }
 }
 
+// MARK: - Android -
+
 android {
     namespace = "io.github.tscholze.cmpsample"
     compileSdk = 33
@@ -90,3 +108,53 @@ android {
         )
     )
 }
+
+// MARK: - Dependencies -
+
+/**
+ * Contains all gradle dependencies.
+ *
+ * Usage:
+ * ```
+ *     with(Dependencies.Kotlinx) {
+ *         implement(coroutines)
+ *     }
+ * ```
+ */
+object Dependencies {
+    object Kotlinx {
+        const val coroutines =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlinx.kotlinxVersion}"
+    }
+
+    object Ktor {
+        const val core = "io.ktor:ktor-client-core:${Versions.Ktor.ktorVersion}"
+        const val cio = "io.ktor:ktor-client-cio:${Versions.Ktor.ktorVersion}"
+        const val contentNegotiation =
+            "io.ktor:ktor-client-content-negotiation:${Versions.Ktor.ktorVersion}"
+        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.Ktor.ktorVersion}"
+        const val darwin = "io.ktor:ktor-client-darwin:${Versions.Ktor.ktorVersion}"
+    }
+
+    object Ballast {
+        const val core = "io.github.copper-leaf:ballast-core:${Versions.Ballast.ballastVersion}"
+        const val navigation =
+            "io.github.copper-leaf:ballast-navigation:${Versions.Ballast.ballastVersion}"
+    }
+
+    // MARK: - Versions -
+    private object Versions {
+        object Ktor {
+            const val ktorVersion = "2.1.3"
+        }
+
+        object Kotlinx {
+            const val kotlinxVersion = "1.6.4"
+        }
+
+        object Ballast {
+            const val ballastVersion = "2.3.0"
+        }
+    }
+}
+
