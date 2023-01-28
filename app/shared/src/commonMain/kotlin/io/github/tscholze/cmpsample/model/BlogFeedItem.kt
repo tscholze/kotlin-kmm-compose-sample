@@ -16,7 +16,7 @@ class BlogFeedItem(
     val title: String,
     val created: String,
     val url: String,
-    private val coverImageUrl: String
+    val coverImageUrl: String
 )
 
 
