@@ -20,7 +20,7 @@ import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.SnippetConfiguration
 import io.github.tscholze.cmpsample.navigation.AppScreens
-import io.github.tscholze.cmpsample.utils.SampleHttpClient
+import io.github.tscholze.cmpsample.utils.HttpClientFactory
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     val scope = rememberCoroutineScope()
     var posts by remember { mutableStateOf(emptyList<SnippetConfiguration>()) }
 
-    val client = SampleHttpClient().makeClient()
+    val client = HttpClientFactory().makeClient()
 
     // MARK: - Helper -
 

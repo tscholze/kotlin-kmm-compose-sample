@@ -6,7 +6,18 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-actual class SampleHttpClient {
+/**
+ * iOS implementation a http client with
+ * a platform specific engine to work with.
+ *
+ * Caution:
+ * The engine `CIO` would work in common but does not support
+ * TLS (https) on native targets.
+ *
+ * Common: commonMain/utils/
+ * Android: androidMain/utils/
+ */
+actual class HttpClientFactory {
     actual fun makeClient(): HttpClient {
         return HttpClient(Darwin) {
             // Configure http client.
