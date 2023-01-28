@@ -20,14 +20,10 @@ import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.SnippetConfiguration
 import io.github.tscholze.cmpsample.navigation.AppScreens
-import io.ktor.client.*
+import io.github.tscholze.cmpsample.utils.SampleHttpClient
 import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
 
 @Composable
 internal fun RemoteResourceScreen(router: Router<AppScreens>) {
@@ -37,16 +33,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     val scope = rememberCoroutineScope()
     var posts by remember { mutableStateOf(emptyList<SnippetConfiguration>()) }
 
-    val client = HttpClient(CIO) {
-        // Configure http client.
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-            })
-        }
-    }
+    val client = SampleHttpClient().makeClient()
 
     // MARK: - Helper -
 
