@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import io.ktor.client.*
 
 @Composable
-internal actual fun __RemoteImage(
+internal actual fun RemoteImage(
     client: HttpClient,
     imageUrl: String,
     modifier: Modifier,

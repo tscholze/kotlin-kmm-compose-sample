@@ -19,7 +19,7 @@ import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.BlogFeedItem
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.HttpClientFactory
-import io.github.tscholze.cmpsample.utils.__RemoteImage
+import io.github.tscholze.cmpsample.utils.RemoteImage
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
@@ -76,7 +76,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
                         ) {
 
 
-                            __RemoteImage(
+                            RemoteImage(
                                 client,
                                 post.coverImageUrl,
                                 modifier = Modifier.fillMaxWidth().aspectRatio(2f)

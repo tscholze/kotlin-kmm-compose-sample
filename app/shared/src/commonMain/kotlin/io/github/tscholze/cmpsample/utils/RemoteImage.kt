@@ -6,7 +6,7 @@ import io.ktor.client.*
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")
 @Composable
-internal expect fun __RemoteImage(
+internal expect fun RemoteImage(
     client: HttpClient,
     imageUrl: String,
     modifier: Modifier,
