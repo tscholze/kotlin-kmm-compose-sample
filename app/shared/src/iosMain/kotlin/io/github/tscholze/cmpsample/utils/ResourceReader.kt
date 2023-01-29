@@ -12,8 +12,22 @@ import platform.darwin.NSObjectMeta
  * Based on: https://luisramos.dev/how-to-share-resources-kmm
  */
 actual class ResourceReader {
+
+    // MARK: - Private properties -
+
     private val bundle: NSBundle = NSBundle.bundleForClass(BundleMarker)
 
+    private class BundleMarker : NSObject() {
+        companion object : NSObjectMeta()
+    }
+
+    // MARK: - Implementation -
+
+    /**
+     * Reads resources as string from given file name
+     *
+     * @param name Name with extension that should be read.
+     */
     actual fun readResource(name: String): String {
         val (filename, type) = when (val lastPeriodIndex = name.lastIndexOf('.')) {
             0 -> {
@@ -41,9 +55,5 @@ actual class ResourceReader {
                 error("Couldn't load resource: $name. Error: ${errorPtr.value?.localizedDescription} - ${errorPtr.value}")
             }
         }
-    }
-
-    private class BundleMarker : NSObject() {
-        companion object : NSObjectMeta()
     }
 }

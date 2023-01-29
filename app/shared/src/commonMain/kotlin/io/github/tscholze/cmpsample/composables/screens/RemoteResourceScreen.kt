@@ -1,9 +1,7 @@
 package io.github.tscholze.cmpsample.composables.screens
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
@@ -21,6 +19,7 @@ import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.BlogFeedItem
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.HttpClientFactory
+import io.github.tscholze.cmpsample.utils.RemoteImage
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
@@ -75,6 +74,16 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
                                     uriHandler.openUri(post.url)
                                 }
                         ) {
+
+                            // Cover image
+                            RemoteImage(
+                                client,
+                                post.coverImageUrl,
+                                modifier = Modifier.fillMaxWidth().aspectRatio(2f),
+                                contentDescription = "Article cover image"
+                            )
+
+                            // Text block
                             Text(post.title, fontWeight = FontWeight.Medium)
                             Text(
                                 post.created,

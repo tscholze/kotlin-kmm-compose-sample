@@ -7,13 +7,11 @@ import io.ktor.client.*
  * a platform specific engine to work with.
  *
  * Caution:
- * The engine `CIO` would work in common but does not support
- * TLS (https) on native targets.
+ *  The engine `CIO` would work in common but does not support
+ *  TLS (https) on native targets.
  *
  * iOS: iOSMain/utils/
  * Android: androidMain/utils/
  */
 @Suppress("NO_ACTUAL_FOR_EXPECT")
-expect class HttpClientFactory() {
-    fun makeClient(): HttpClient
-}
+expect fun makeHttpClient(): HttpClient
