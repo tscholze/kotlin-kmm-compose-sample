@@ -87,12 +87,6 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
-        val nativeMain by creating {
-            dependsOn(commonMain)
-        }
-        val uikitMain by creating {
-            dependsOn(nativeMain)
-        }
     }
 }
 

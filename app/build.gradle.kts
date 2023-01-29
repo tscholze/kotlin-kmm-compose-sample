@@ -16,8 +16,6 @@ subprojects {
                     "androidTestFixtures",
                     "androidTestFixturesDebug",
                     "androidTestFixturesRelease",
-                    "nativeMain",
-                    "uikitMain"
                 )
                     .contains(sourceSet.name)
             }
