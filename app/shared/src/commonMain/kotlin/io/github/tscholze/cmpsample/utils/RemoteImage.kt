@@ -10,5 +10,5 @@ internal expect fun RemoteImage(
     client: HttpClient,
     imageUrl: String,
     modifier: Modifier,
-    contentDescription: String? = null
+    contentDescription: String
 )

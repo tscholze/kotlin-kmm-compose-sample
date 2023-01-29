@@ -75,13 +75,15 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
                                 }
                         ) {
 
-
+                            // Cover image
                             RemoteImage(
                                 client,
                                 post.coverImageUrl,
-                                modifier = Modifier.fillMaxWidth().aspectRatio(2f)
+                                modifier = Modifier.fillMaxWidth().aspectRatio(2f),
+                                contentDescription = "Article cover image"
                             )
 
+                            // Text block
                             Text(post.title, fontWeight = FontWeight.Medium)
                             Text(
                                 post.created,

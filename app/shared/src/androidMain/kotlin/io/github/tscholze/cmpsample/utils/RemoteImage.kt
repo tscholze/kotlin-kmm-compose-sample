@@ -12,7 +12,7 @@ import io.ktor.client.*
 
 @SuppressLint("ComposableNaming")
 @Composable
-internal actual fun RemoteImage(client: HttpClient, imageUrl: String, modifier: Modifier, contentDescription: String?) {
+internal actual fun RemoteImage(client: HttpClient, imageUrl: String, modifier: Modifier, contentDescription: String) {
     val painter = rememberImagePainter(
         data = imageUrl,
         imageLoader = LocalImageLoader.current,
