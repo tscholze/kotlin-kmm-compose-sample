@@ -1,9 +1,8 @@
 package io.github.tscholze.cmpsample.composables.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
@@ -11,6 +10,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -21,6 +21,7 @@ import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.BlogFeedItem
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.HttpClientFactory
+import io.github.tscholze.cmpsample.utils.__RemoteImage
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
@@ -75,6 +76,14 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
                                     uriHandler.openUri(post.url)
                                 }
                         ) {
+
+
+                            __RemoteImage(
+                                client,
+                                post.coverImageUrl,
+                                modifier = Modifier.fillMaxWidth().aspectRatio(2f)
+                            )
+
                             Text(post.title, fontWeight = FontWeight.Medium)
                             Text(
                                 post.created,

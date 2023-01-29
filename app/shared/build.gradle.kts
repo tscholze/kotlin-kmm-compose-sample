@@ -59,6 +59,8 @@ kotlin {
                 with(Dependencies.Ktor) {
                     implementation(cio)
                 }
+
+                implementation("io.coil-kt:coil-compose:2.2.2")
             }
         }
         val androidTest by getting
