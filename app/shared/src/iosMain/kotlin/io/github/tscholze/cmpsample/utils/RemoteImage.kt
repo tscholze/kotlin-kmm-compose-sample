@@ -1,6 +1,5 @@
 package io.github.tscholze.cmpsample.utils
 
-import androidx.compose.foundation.Image
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
