@@ -14,6 +14,4 @@ import io.ktor.client.*
  * Android: androidMain/utils/
  */
 @Suppress("NO_ACTUAL_FOR_EXPECT")
-expect class HttpClientFactory() {
-    fun makeClient(): HttpClient
-}
+expect fun makeHttpClient(): HttpClient

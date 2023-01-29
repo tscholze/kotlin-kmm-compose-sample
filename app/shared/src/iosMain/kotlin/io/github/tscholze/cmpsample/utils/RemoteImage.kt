@@ -10,6 +10,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.utils.io.core.*
+import kotlinx.coroutines.launch
 import org.jetbrains.skia.Image
 
 /**
@@ -34,10 +35,11 @@ internal actual fun RemoteImage(
     // MARK: - Properties -
 
     val imageBitmap = remember { mutableStateOf<ImageBitmap?>(null) }
+    val scope = rememberCoroutineScope()
 
-    // MARK: - Launch effect -
+    // MARK: - Events -
 
-    LaunchedEffect(key1 = imageUrl) {
+    scope.launch {
         imageBitmap.value = loadPicture(client, imageUrl)
     }
 

@@ -17,8 +17,7 @@ import kotlinx.serialization.json.Json
  * Common: commonMain/utils/
  * iOS: iOSMain/utils/
  */
-actual class HttpClientFactory {
-    actual fun makeClient(): HttpClient {
+    actual fun makeHttpClient(): HttpClient {
         return HttpClient(CIO) {
             // Configure http client.
             install(ContentNegotiation) {
@@ -30,4 +29,3 @@ actual class HttpClientFactory {
             }
         }
     }
-}

@@ -17,17 +17,15 @@ import kotlinx.serialization.json.Json
  * Common: commonMain/utils/
  * Android: androidMain/utils/
  */
-actual class HttpClientFactory {
-    actual fun makeClient(): HttpClient {
-        return HttpClient(Darwin) {
-            // Configure http client.
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
+actual fun makeHttpClient(): HttpClient {
+    return HttpClient(Darwin) {
+        // Configure http client.
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
         }
     }
 }
