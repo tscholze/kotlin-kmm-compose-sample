@@ -10,6 +10,18 @@ import coil.compose.LocalImageLoader
 import coil.compose.rememberImagePainter
 import io.ktor.client.*
 
+/**
+ * Android implementation of a KMM image view composable that fetches it's image
+ * from given url.
+ *
+ * @param client Platform-specific HttpClient that shall be used
+ * @param imageUrl Source url of the image
+ * @param modifier Compose modifiers that shall be applied
+ * @param contentDescription Readable description of what is displayed.
+ *
+ * common: commonMain/utils/
+ * iOS: iosMain/utils/
+ */
 @SuppressLint("ComposableNaming")
 @Composable
 internal actual fun RemoteImage(client: HttpClient, imageUrl: String, modifier: Modifier, contentDescription: String) {

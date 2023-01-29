@@ -9,5 +9,10 @@ package io.github.tscholze.cmpsample.utils
  */
 @Suppress("NO_ACTUAL_FOR_EXPECT")
 expect class ResourceReader() {
+    /**
+     * Reads resources as string from given file name
+     *
+     * @param name Name with extension that should be read.
+     */
     fun readResource(name: String): String
 }
