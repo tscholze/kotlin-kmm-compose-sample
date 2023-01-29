@@ -56,11 +56,15 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                // Ktor
                 with(Dependencies.Ktor) {
                     implementation(cio)
                 }
 
-                implementation("io.coil-kt:coil-compose:2.2.2")
+                // Coil
+                with(Dependencies.Coil) {
+                    implementation(compose)
+                }
             }
         }
         val androidTest by getting
@@ -143,6 +147,10 @@ object Dependencies {
             "io.github.copper-leaf:ballast-navigation:${Versions.Ballast.ballastVersion}"
     }
 
+    object Coil {
+        const val compose = "io.coil-kt:coil-compose:${Versions.Coil.coilVersion}"
+    }
+
     // MARK: - Versions -
     private object Versions {
         object Ktor {
@@ -155,6 +163,10 @@ object Dependencies {
 
         object Ballast {
             const val ballastVersion = "2.3.0"
+        }
+
+        object Coil {
+            const val coilVersion = "2.2.2"
         }
     }
 }
