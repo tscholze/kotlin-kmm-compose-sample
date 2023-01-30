@@ -14,9 +14,15 @@ This is currently a playground to get to know with [Kotlin Mobile Multiplatform]
 Because of the complexity a non-dependency approach as iOS has is not possible.
 The following dependencies are required to run the app:
 
+### commonMain
+
 1. [KotlinX coroutines](https://github.com/Kotlin/kotlinx.coroutines) as a foundation (X means extension)
 2. [Ktor](https://ktor.io) for Network requests and parsing
 3. [Ballast](https://copper-leaf.github.io/ballast/) for Jetpack Compose navigation
+
+### androidMain
+
+1. [Coil](https://coil-kt.github.io/coil/) used to fetch remote images
 
 ## Feature roadmap
 
@@ -51,6 +57,17 @@ The following dependencies are required to run the app:
 - [ ] Check if there is no memory leakage
 
 ## Version overview
+
+### 0.0.3
+**Main feature**
+
+- Added `RemoteImage` as `actual` and `expected` implementation 
+- Fixed list / scrolling insets
+- Dynamic tab view selection handling
+
+**UI**
+
+![Version 0.0.4](https://github.com/tscholze/kotlin-kmm-compose-sample/blob/main/docs/v004-min.png?raw=true "Version 0.0.4")
 
 ### 0.0.3
 **Main feature**
