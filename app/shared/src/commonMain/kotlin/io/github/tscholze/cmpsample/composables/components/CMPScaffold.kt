@@ -107,9 +107,9 @@ internal fun CMPScaffold(
                 end = SafeArea.current.value.calculateEndPadding(LayoutDirection.Ltr),
                 bottom = SafeArea.current.value.calculateBottomPadding()
             ),
-        ) {
+        ) { paddingValues ->
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(paddingValues)
             ) {
                 content()
             }

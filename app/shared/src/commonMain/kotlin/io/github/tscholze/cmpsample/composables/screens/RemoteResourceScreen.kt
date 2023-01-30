@@ -69,7 +69,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
                 itemsIndexed(posts) { index, post ->
                     Column {
                         Column(
-                            modifier = Modifier.padding(vertical = 8.dp)
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                                 .clickable {
                                     uriHandler.openUri(post.url)
                                 }

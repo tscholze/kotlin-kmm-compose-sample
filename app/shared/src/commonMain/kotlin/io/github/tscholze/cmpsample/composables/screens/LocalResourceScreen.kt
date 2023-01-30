@@ -51,30 +51,35 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
     // MARK: - UI -
 
     PageLayout("Local Resources", router) {
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             // 1. Info block
             Banner("The following data was fetched from a local file.")
 
-                // 2. Search container
-                SearchView(textState)
+            // 2. Search container
+            SearchView(textState)
 
-                // 3. List of filtered license plate locations
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    items(filterPlates(textState.value)) { row ->
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            // ID like "A"
-                            Text(row.id, style = MaterialTheme.typography.h3)
+            // 3. List of filtered license plate locations
+            LazyColumn(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(filterPlates(textState.value)) { row ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        // ID like "A"
+                        Text(row.id, style = MaterialTheme.typography.h3)
 
-                            // City "Augsburg"
-                            // State "Bayern"
-                            Column(
-                                horizontalAlignment = Alignment.End,
-                                modifier = Modifier.fillMaxSize()
-                            ) {
-                                Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-                                Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
-                            }
+                        // City "Augsburg"
+                        // State "Bayern"
+                        Column(
+                            horizontalAlignment = Alignment.End,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
+                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
                         }
+                    }
                 }
             }
         }
