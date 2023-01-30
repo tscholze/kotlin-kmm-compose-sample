@@ -1,6 +1,9 @@
 package io.github.tscholze.cmpsample.utils
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -51,6 +54,10 @@ internal actual fun RemoteImage(
                 bitmap = imageBitmap.value!!,
                 contentDescription
             )
+        } else {
+            Box(
+                modifier = modifier.background(MaterialTheme.colors.surface)
+            )
         }
     }
 }
@@ -58,12 +65,10 @@ internal actual fun RemoteImage(
 // MARK: - Private helper -
 
 private suspend fun loadPicture(client: HttpClient, url: String): ImageBitmap {
-    val image = client.use { closeableClient ->
-        val httpResponse: HttpResponse = closeableClient.get(url)
-        httpResponse.body<ByteArray>()
-    }
+    val httpResponse: HttpResponse = client.get(url)
+    val bytes = httpResponse.body<ByteArray>()
 
-    return  Image.makeFromEncoded(image).toComposeImageBitmap()
+    return  Image.makeFromEncoded(bytes).toComposeImageBitmap()
 }
 
 
