@@ -50,7 +50,7 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
 
     // MARK: - UI -
 
-    PageLayout("Local Resources", router) {
+    PageLayout(AppScreens.LocalData.title, router) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {

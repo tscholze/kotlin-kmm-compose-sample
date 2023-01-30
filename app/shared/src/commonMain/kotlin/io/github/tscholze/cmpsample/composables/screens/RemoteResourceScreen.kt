@@ -59,7 +59,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
 
     // MARK: - UI -
 
-    PageLayout("Remote Resources", router) {
+    PageLayout(AppScreens.RemoteData.title, router) {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             // 1. Info block
             Banner("The following posts are fetch from an url")
