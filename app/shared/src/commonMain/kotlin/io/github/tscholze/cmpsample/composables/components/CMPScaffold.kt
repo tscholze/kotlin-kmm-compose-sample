@@ -3,11 +3,16 @@ package io.github.tscholze.cmpsample.composables.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Face
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.copperleaf.ballast.navigation.routing.RouterContract
 import com.copperleaf.ballast.navigation.vm.Router
@@ -35,14 +40,37 @@ internal val safeAreaState = mutableStateOf(PaddingValues())
 internal fun CMPScaffold(
     title: String,
     router: Router<AppScreens>,
-    content: @Composable () -> Unit) {
+    content: @Composable () -> Unit
+) {
+    // MARK: - Helper -
+
+    val uriHandler = LocalUriHandler.current
 
     // MARK: - Components -
 
     @Composable
     fun CMPAppBar() {
         TopAppBar(
-            title = { Text(title) }
+            title = { Text(title) },
+            actions = {
+                Button(
+                    onClick = {
+                        uriHandler.openUri("https://github.com/tscholze/kotlin-kmm-compose-sample")
+                    },
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("Visit me on GitHub")
+                        Icon(
+                            Icons.Rounded.Face,
+                            contentDescription = "Go to GitHub"
+                        )
+                    }
+
+                }
+            }
         )
     }
 
