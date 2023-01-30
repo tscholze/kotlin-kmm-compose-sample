@@ -18,8 +18,6 @@ The following dependencies are required to run the app:
 2. [Ktor](https://ktor.io) for Network requests and parsing
 3. [Ballast](https://copper-leaf.github.io/ballast/) for Jetpack Compose navigation
 
-
-
 ## Feature roadmap
 
 ### Setup
@@ -33,8 +31,9 @@ The following dependencies are required to run the app:
 
 ### Core functionality
 - [x] Add in-app navigation feature (screen transitations)
-- [x] Add fetch local data  (first screen, csv)
-- [x] Add fetch remote data (second screen, json)
+- [x] Add fetching local data  (first screen, csv)
+- [x] Add fetching remote data (second screen, json)
+- [x] Add fetching remore assets (second screen, article images)
 - [ ] Add user default persisted flags
 - [ ] Add monitoring with Firebase Analytics & Crashlytics
 
@@ -87,6 +86,7 @@ Project setup and basic Jetpack Compose UI sharing between `:androidApp`, `:iosA
 ## Special thanks to
 - [David Herman](https://github.com/bitspittle) for helping me with all Kotlin
 - [Adrian Witaszak](https://github.com/charlee-dev) for helping me to get started with KMM and shared ui
+- [Marcel Reiter](MarcelReiter) for showing me how to work with Jetpack Compose shenanigans
 
 ## Get in touch
 If you wanna talk about Kotlin, KMM, Shared Compose UI, Jetpack Compose pr Jetpack Compose for Web, I would highly recommend to join David's tiny but [awesome Discord server](https://discord.com/invite/5NZ2GKV5Cs) for his awesome CfW-enhancing web framework called [Kobweb](https://kobweb.varabyte.com). I never meet such brilliant folks that are not too "good" to help beginners.
