@@ -60,7 +60,7 @@ internal fun CMPScaffold(
                     label = {
                         Text(
                             text = screen.title,
-                            fontSize = 9.sp
+                            fontSize = 10.sp
                         )
                     },
                     selected = title == screen.title,
