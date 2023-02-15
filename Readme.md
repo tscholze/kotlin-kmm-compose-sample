@@ -45,8 +45,8 @@ The following dependencies are required to run the app:
 
 ### UI
 - [x] Create a fake but real world example of an app ui
-- [ ] Evaluate how the translation from Android JPC controls like `BottomBar` works in iOS
-- [ ] Evaluate how it would be possible to create "custom" ui for each platform but use it in `:shared:commonMain`
+- [ ] Evaluate how the translation from Android MD3 controls like `BottomBar` works in iOS
+- [x] Evaluate how it would be possible to create "custom" ui for each platform but use it in `:shared:commonMain`
 
 ### Shared functionality
 - [ ] Evaluate how to use features like pushes
@@ -58,7 +58,7 @@ The following dependencies are required to run the app:
 
 ## Version overview
 
-### 0.0.3
+### 0.0.4
 **Main feature**
 
 - Added `RemoteImage` as `actual` and `expected` implementation 
