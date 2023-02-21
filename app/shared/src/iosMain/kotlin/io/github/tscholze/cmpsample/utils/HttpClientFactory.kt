@@ -10,12 +10,11 @@ import kotlinx.serialization.json.Json
  * iOS implementation a http client with
  * a platform specific engine to work with.
  *
+ * Actual: iOS implementation.
+ *
  * Caution:
  * The engine `CIO` would work in common but does not support
  * TLS (https) on native targets.
- *
- * Common: commonMain/utils/
- * Android: androidMain/utils/
  */
 actual fun makeHttpClient(): HttpClient {
     return HttpClient(Darwin) {

@@ -13,6 +13,16 @@ import platform.Foundation.NSURL
 import platform.Foundation.NSURLRequest
 import platform.WebKit.WKWebView
 
+
+/**
+ * iOS implementation of a multi platform web view composable
+ * that renders web site for given url
+ *
+ * Actual: iOS implementation.
+ *
+ * @param urlString Url to render
+ * @param modifier Modifier that shall be applied
+*/
 @Composable
 internal  actual fun RemoteWebView(urlString: String, modifier: Modifier) {
 

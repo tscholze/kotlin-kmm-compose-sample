@@ -20,13 +20,12 @@ import org.jetbrains.skia.Image
  * iOS implementation of a KMM image view composable that fetches it's image
  * from given url.
  *
+ * Actual: iOS implementation.
+ *
  * @param client Platform-specific HttpClient that shall be used
  * @param imageUrl Source url of the image
  * @param modifier Compose modifiers that shall be applied
  * @param contentDescription Readable description of what is displayed.
- *
- * common: commonMain/utils/
- * Android: androidMain/utils/
  */
 @Composable
 internal actual fun RemoteImage(
