@@ -5,6 +5,7 @@ import com.copperleaf.ballast.navigation.routing.Backstack
 import com.copperleaf.ballast.navigation.routing.renderCurrentDestination
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.screens.LocalResourceScreen
+import io.github.tscholze.cmpsample.composables.screens.OtherFeaturesScreen
 import io.github.tscholze.cmpsample.composables.screens.RemoteResourceScreen
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.navigation.RouterViewModel
@@ -27,6 +28,7 @@ internal fun RootContent() {
             when(appScreen) {
                 AppScreens.LocalData -> LocalResourceScreen(router)
                 AppScreens.RemoteData -> RemoteResourceScreen(router)
+                AppScreens.OtherFeatures -> OtherFeaturesScreen(router)
             }
         },
         notFound = { },

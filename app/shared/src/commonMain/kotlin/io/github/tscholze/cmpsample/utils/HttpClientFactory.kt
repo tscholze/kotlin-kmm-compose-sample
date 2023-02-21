@@ -12,6 +12,8 @@ import io.ktor.client.*
  *
  * iOS: iOSMain/utils/
  * Android: androidMain/utils/
+ *
+ * @return Created [HttpClient] instance.
  */
 @Suppress("NO_ACTUAL_FOR_EXPECT")
 expect fun makeHttpClient(): HttpClient
