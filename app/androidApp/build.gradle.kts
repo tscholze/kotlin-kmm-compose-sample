@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "io.github.tscholze.cmpsample.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "io.github.tscholze.cmpsample.android"
         minSdk = 31

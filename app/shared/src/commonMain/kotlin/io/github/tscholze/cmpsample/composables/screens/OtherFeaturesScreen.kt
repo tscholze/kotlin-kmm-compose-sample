@@ -1,9 +1,7 @@
 package io.github.tscholze.cmpsample.composables.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -17,6 +15,7 @@ import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.Banner
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.navigation.AppScreens
+import io.github.tscholze.cmpsample.utils.RemoteWebView
 import io.github.tscholze.cmpsample.utils.UserPreferenceReader
 
 /**
@@ -70,6 +69,21 @@ internal fun OtherFeaturesScreen(router: Router<AppScreens>) {
                             userPreferenceReader.storeString("sampleText", it)
                         }
                     )
+
+                    Divider()
+
+                    // 2.2 Embedded web view
+                    Text(
+                        "Embedded web view",
+                        style = MaterialTheme.typography.h6,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text("Web view that renders a remote page but is embedded like a system component")
+
+RemoteWebView(
+    "https://google.de",
+    modifier = Modifier.height(200.dp).fillMaxWidth()
+)
                 }
             }
         }

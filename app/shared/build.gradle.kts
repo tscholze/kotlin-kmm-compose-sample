@@ -56,6 +56,11 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                // Accompanist
+                with(Dependencies.Accompanist) {
+                    implementation(web)
+                }
+
                 // Ktor
                 with(Dependencies.Ktor) {
                     implementation(cio)
@@ -132,6 +137,11 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlinx.kotlinxVersion}"
     }
 
+    object Accompanist {
+        const val web = "com.google.accompanist:accompanist-webview:${Versions.Accompanist.webVersion}"
+
+    }
+
     object Ktor {
         const val core = "io.ktor:ktor-client-core:${Versions.Ktor.ktorVersion}"
         const val cio = "io.ktor:ktor-client-cio:${Versions.Ktor.ktorVersion}"
@@ -155,6 +165,10 @@ object Dependencies {
     private object Versions {
         object Ktor {
             const val ktorVersion = "2.1.3"
+        }
+
+        object Accompanist {
+            const val webVersion = "0.29.1-alpha"
         }
 
         object Kotlinx {
