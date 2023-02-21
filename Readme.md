@@ -40,7 +40,7 @@ The following dependencies are required to run the app:
 - [x] Add fetching local data  (first screen, csv)
 - [x] Add fetching remote data (second screen, json)
 - [x] Add fetching remore assets (second screen, article images)
-- [ ] Add user default persisted flags
+- [x] Add user default persisted flags (third screen)
 - [ ] Add monitoring with Firebase Analytics & Crashlytics
 
 ### UI

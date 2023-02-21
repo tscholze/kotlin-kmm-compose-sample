@@ -1,6 +1,7 @@
 package io.github.tscholze.cmpsample.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -21,7 +22,8 @@ enum class AppScreens(
     // MARK: - Screens -
 
     LocalData("Local data", Icons.Rounded.Home, "/app/local-data"),
-    RemoteData("Remote data", Icons.Rounded.ThumbUp, "/app/remote-data");
+    RemoteData("Remote data", Icons.Rounded.ThumbUp, "/app/remote-data"),
+    OtherFeatures("Other features", Icons.Rounded.ExitToApp, "/app/other-features");
 
     // MARK: - Matcher -
 
