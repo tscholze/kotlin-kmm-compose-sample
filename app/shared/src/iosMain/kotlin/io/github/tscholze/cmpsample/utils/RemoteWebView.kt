@@ -20,6 +20,9 @@ import platform.WebKit.WKWebView
  *
  * Actual: iOS implementation.
  *
+ * Caution: This feature is currently not supported in KMM
+ * https://github.com/JetBrains/androidx/pull/386/commits/9172718a05550e9db152f7ff4c250b0132f59115#diff-188d07c3a7341d7123298c358860432f11799968fcfae5d711f9fe07e457df37R125
+ *
  * @param urlString Url to render
  * @param modifier Modifier that shall be applied
 */
