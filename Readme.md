@@ -41,16 +41,11 @@ The following dependencies are required to run the app:
 - [x] Add fetching remote data (second screen, json)
 - [x] Add fetching remore assets (second screen, article images)
 - [x] Add user default persisted flags (third screen)
-- [ ] Add monitoring with Firebase Analytics & Crashlytics
 
 ### UI
 - [x] Create a fake but real world example of an app ui
-- [ ] Evaluate how the translation from Android MD3 controls like `BottomBar` works in iOS
+- [x] Evaluate how the translation from Android MD3 controls like `BottomBar` works in iOS
 - [x] Evaluate how it would be possible to create "custom" ui for each platform but use it in `:shared:commonMain`
-
-### Shared functionality
-- [ ] Evaluate how to use features like pushes
-- [ ] Evaluate best practices for logging and crash statistics
 
 ### Instruments
 - [ ] Check how's the memory consumption
